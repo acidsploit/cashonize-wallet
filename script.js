@@ -324,7 +324,7 @@ async function loadWalletInfo() {
       const signedMessage = document.querySelector('#signedMessage').value
       console.log(`sign  msg: ${signedMessage}`);
       const signature = document.querySelector('#signature').value
-      console.log(`sign addr: ${signature}`);
+      console.log(`signature: ${signature}`);
 
       const verificationWallet = await walletClass.watchOnly(signatureAddr);
       const verificationResult = await verificationWallet.verify(signedMessage, signature);
@@ -335,8 +335,6 @@ async function loadWalletInfo() {
       } else {
         alert("Signature INVALID!")
       }
-
-
     } catch (error) { alert(error) }
   });
 
