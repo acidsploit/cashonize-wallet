@@ -157,6 +157,12 @@ main{
   margin: 0px 0 10px 0;
   display: flex;
 }
+.bg-green {
+  background-color: #0ac18f;
+}
+.bg-red {
+  background-color: crimson;
+}
 .sendAmountGroup {
   display: flex;
   width: 50%;

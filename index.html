@@ -133,13 +133,13 @@
           <input type="button" class="primaryButton" id="sign" value="Sign">
           <p class="msgInputGroup">
           <p class="msgInput">
-            <input id="signatureAddr" placeholder="signature address">
+            <input id="signatureAddr" placeholder="signature address" oninput="resetResult()">
           </p>
           <p class="msgInput">
-            <textarea id="signedMessage" class="msgInput" placeholder="message"></textarea>
+            <textarea id="signedMessage" class="msgInput" placeholder="message" oninput="resetResult()"></textarea>
           </p>
           <p class="msgInput">
-            <textarea id="signature" class="msgInput" placeholder="signature"></textarea>
+            <textarea id="signature" class="msgInput" placeholder="signature" oninput="resetResult()"></textarea>
           </p>
           </p>
           <input type="button" class="primaryButton" id="verify" value="Verify">

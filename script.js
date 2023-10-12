@@ -309,9 +309,9 @@ async function loadWalletInfo() {
   document.querySelector('#sign').addEventListener("click", async () => {
     try {
       console.log(`sign addr: ${wallet.cashaddr}`);
-      const message = document.querySelector('#message').value;
+      let message = document.querySelector('#message').value;
       console.log(`sign  msg: ${message}`);
-      const sigResult = await wallet.sign(message);
+      let sigResult = await wallet.sign(message);
       console.log(`signature: ${sigResult.signature}`);
       document.querySelector('#sigResult').value = sigResult.signature;
       document.querySelector('#sigResult').classList.remove("hide");
@@ -319,24 +319,32 @@ async function loadWalletInfo() {
   });
   document.querySelector('#verify').addEventListener("click", async () => {
     try {
-      const signatureAddr = document.querySelector('#signatureAddr').value
+      let signatureAddr = document.querySelector('#signatureAddr').value
       console.log(`sign addr: ${signatureAddr}`);
-      const signedMessage = document.querySelector('#signedMessage').value
+      let signedMessage = document.querySelector('#signedMessage').value
       console.log(`sign  msg: ${signedMessage}`);
-      const signature = document.querySelector('#signature').value
+      let signature = document.querySelector('#signature').value
       console.log(`signature: ${signature}`);
 
       const verificationWallet = await walletClass.watchOnly(signatureAddr);
-      const verificationResult = await verificationWallet.verify(signedMessage, signature);
+      let verificationResult = await verificationWallet.verify(signedMessage, signature);
       console.log(verificationResult);
 
       if (verificationResult.valid && verificationResult.details.publicKeyHashMatch) {
-        alert("Signature VALID!");
+        // alert("Signature VALID!");
+        document.querySelector('#signature').classList.remove("bg-red");
+        document.querySelector('#signature').classList.add("bg-green");
       } else {
-        alert("Signature INVALID!")
+        // alert("Signature INVALID!")
+        document.querySelector('#signature').classList.remove("bg-green");
+        document.querySelector('#signature').classList.add("bg-red");
       }
     } catch (error) { alert(error) }
   });
+  window.resetResult = function resetResult() {
+    document.querySelector('#signature').classList.remove("bg-red");
+    document.querySelector('#signature').classList.remove("bg-green");
+  }
 
   // Functionality CreateTokens view depending on selected token-type
   document.querySelector('#createTokens').addEventListener("click", async () => {
