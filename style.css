@@ -153,8 +153,12 @@ main{
   margin-right: 14px;
   width: 100%;
 }
-.msgInputGroup {
-  margin: 0px 0 10px 0;
+.signInputGroup {
+  margin: 0px 0 0px 0;
+  display: flex;
+}
+.verifyInputGroup {
+  margin: 25px 0 0px 0;
   display: flex;
 }
 .bg-green {
