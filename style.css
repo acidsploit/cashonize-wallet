@@ -150,11 +150,11 @@ main{
   display: flex;
 }
 .msgInput {
-  margin-right: 14px;
+  margin: 10px 0 0 0;
   width: 100%;
 }
 .signInputGroup {
-  margin: 0px 0 0px 0;
+  margin: 0 0 0 0;
   display: flex;
 }
 .verifyInputGroup {

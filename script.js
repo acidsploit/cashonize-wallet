@@ -306,6 +306,31 @@ async function loadWalletInfo() {
   });
 
   // Sign & Verify
+  let signView = false;
+  if (localStorage.getItem("signView") === "false") {
+    document.querySelector('#signViewToggle').checked = false;
+    document.querySelector('#signView').classList.add("hide");
+  } else {
+    signView = true;
+    document.querySelector('#signViewToggle').checked = true;
+    document.querySelector('#signView').classList.remove("hide");
+  }
+
+  const signViewToggle = document.querySelector('#signViewToggle');
+  signViewToggle.onchange = () => toggleSignView();
+
+  function toggleSignView() {
+    if (signView === false) {
+      document.querySelector('#signView').classList.remove("hide");
+      signView = true;
+      localStorage.setItem("signView", `${signView}`);
+    } else {
+      document.querySelector('#signView').classList.add("hide");
+      signView = false;
+      localStorage.setItem("signView", `${signView}`);
+    }
+  }
+
   document.querySelector('#sign').addEventListener("click", async () => {
     try {
       console.log(`sign addr: ${wallet.cashaddr}`);
@@ -317,6 +342,7 @@ async function loadWalletInfo() {
       document.querySelector('#sigResult').classList.remove("hide");
     } catch (error) { alert(error) }
   });
+
   document.querySelector('#verify').addEventListener("click", async () => {
     try {
       let signatureAddr = document.querySelector('#signatureAddr').value
@@ -341,6 +367,7 @@ async function loadWalletInfo() {
       }
     } catch (error) { alert(error) }
   });
+
   window.resetResult = function resetResult() {
     document.querySelector('#signature').classList.remove("bg-red");
     document.querySelector('#signature').classList.remove("bg-green");

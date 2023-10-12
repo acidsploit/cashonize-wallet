@@ -125,24 +125,26 @@
         </fieldset>
 
         <fieldset style="margin-top: 15px">
-          <legend>Sign & Verify</legend>
-          <p class="signInputGroup">
-          <p class="msgInput"><textarea id="message" class="msgInput" placeholder="message"></textarea></p>
-          <p class="msgInput"><textarea readonly id="sigResult" class="hide"></textarea></p>
-          </p>
-          <input type="button" class="primaryButton" id="sign" value="Sign">
-          <p class="verifyInputGroup">
-          <p class="msgInput">
-            <input id="signatureAddr" placeholder="signature address" oninput="resetResult()">
-          </p>
-          <p class="msgInput">
-            <textarea id="signedMessage" class="msgInput" placeholder="message" oninput="resetResult()"></textarea>
-          </p>
-          <p class="msgInput">
-            <textarea id="signature" class="msgInput" placeholder="signature" oninput="resetResult()"></textarea>
-          </p>
-          </p>
-          <input type="button" class="primaryButton" id="verify" value="Verify">
+          <legend>Sign & Verify <input type="checkbox" class="js-switch js-check-change" id="signViewToggle"></legend>
+            <div class="hide" id="signView">
+              <p class="signInputGroup">
+              <p class="msgInput"><textarea id="message" class="msgInput" placeholder="message"></textarea></p>
+              <p class="msgInput"><textarea readonly id="sigResult" class="hide"></textarea></p>
+              </p>
+              <input type="button" class="primaryButton" id="sign" value="Sign">
+              <p class="verifyInputGroup">
+              <p class="msgInput">
+                <input id="signatureAddr" placeholder="signature address" oninput="resetResult()">
+              </p>
+              <p class="msgInput">
+                <textarea id="signedMessage" class="msgInput" placeholder="message" oninput="resetResult()"></textarea>
+              </p>
+              <p class="msgInput">
+                <textarea id="signature" class="msgInput" placeholder="signature" oninput="resetResult()"></textarea>
+              </p>
+              </p>
+              <input type="button" class="primaryButton" id="verify" value="Verify">
+            </div>
         </fieldset>
       </div>
 
