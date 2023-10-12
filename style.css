@@ -149,6 +149,14 @@ main{
   margin: 0px 0 10px 0;
   display: flex;
 }
+.msgInput {
+  margin-right: 14px;
+  width: 100%;
+}
+.msgInputGroup {
+  margin: 0px 0 10px 0;
+  display: flex;
+}
 .sendAmountGroup {
   display: flex;
   width: 50%;
