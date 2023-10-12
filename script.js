@@ -330,7 +330,7 @@ async function loadWalletInfo() {
       const verificationResult = await verificationWallet.verify(signedMessage, signature);
       console.log(verificationResult);
 
-      if (verificationResult.valid) {
+      if (verificationResult.valid && verificationResult.details.publicKeyHashMatch) {
         alert("Signature VALID!");
       } else {
         alert("Signature INVALID!")
