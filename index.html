@@ -125,7 +125,8 @@
         </fieldset>
 
         <fieldset style="margin-top: 15px">
-          <legend>Sign & Verify <input type="checkbox" class="js-switch js-check-change" id="signViewToggle"></legend>
+          <!-- <legend>Sign & Verify <input type="checkbox" class="js-switch js-check-change" id="signViewToggle"></legend> -->
+          <legend>Sign & Verify <input type="checkbox" class="js-switch" id="signViewToggle" onchange="toggleSignView()"></legend>
             <div class="hide" id="signView">
               <p class="signInputGroup">
               <p class="msgInput"><textarea id="message" class="msgInput" placeholder="message"></textarea></p>

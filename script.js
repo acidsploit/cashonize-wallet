@@ -30,12 +30,7 @@ if (readDarkMode == undefined && matchMedia &&
   document.querySelector('#darkmode').checked = true;
   toggleDarkmode();
 }
-document.querySelector('#verifiedOnlySwitch').checked = false;
-// see switchery docs
-let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
-elems.forEach(elem => {
-  const switchery = new Switchery(elem, { size: 'small', color: "#0ac18f" });
-});
+
 const changeDarkMode = document.querySelector('#darkmode');
 changeDarkMode.onchange = () => toggleDarkmode();
 function toggleDarkmode() {
@@ -54,6 +49,24 @@ function toggleDarkmode() {
   localStorage.setItem("darkMode", `${darkMode}`);
   document.querySelector('#darkmode').checked = darkMode;
 }
+
+// Initial verifiedOnlySwitch state
+document.querySelector('#verifiedOnlySwitch').checked = false;
+
+// Initial signView rendering
+let signView = false;
+if (localStorage.getItem("signView") === "true") {
+  signView = true;
+  document.querySelector('#signView').classList.remove("hide");
+  document.querySelector('#signViewToggle').checked = signView;
+}
+
+// Init switchery switches
+// see switchery docs
+let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+elems.forEach(elem => {
+  const switchery = new Switchery(elem, { size: 'small', color: "#0ac18f" });
+});
 
 // Overwrite any browser stored select options 
 document.querySelector('#newtokens').value = "-select-";
@@ -306,31 +319,6 @@ async function loadWalletInfo() {
   });
 
   // Sign & Verify
-  let signView = false;
-  if (localStorage.getItem("signView") === "false") {
-    document.querySelector('#signViewToggle').checked = false;
-    document.querySelector('#signView').classList.add("hide");
-  } else {
-    signView = true;
-    document.querySelector('#signViewToggle').checked = true;
-    document.querySelector('#signView').classList.remove("hide");
-  }
-
-  const signViewToggle = document.querySelector('#signViewToggle');
-  signViewToggle.onchange = () => toggleSignView();
-
-  function toggleSignView() {
-    if (signView === false) {
-      document.querySelector('#signView').classList.remove("hide");
-      signView = true;
-      localStorage.setItem("signView", `${signView}`);
-    } else {
-      document.querySelector('#signView').classList.add("hide");
-      signView = false;
-      localStorage.setItem("signView", `${signView}`);
-    }
-  }
-
   document.querySelector('#sign').addEventListener("click", async () => {
     try {
       console.log(`sign addr: ${wallet.cashaddr}`);
@@ -372,6 +360,21 @@ async function loadWalletInfo() {
     document.querySelector('#signature').classList.remove("bg-red");
     document.querySelector('#signature').classList.remove("bg-green");
   }
+
+  function toggleSignView() {
+    if (signView == false) {
+      signView = !signView
+      document.querySelector('#signView').classList.remove("hide");
+      localStorage.setItem("signView", `${signView}`);
+    } else {
+      signView = !signView
+      document.querySelector('#signView').classList.add("hide");
+      localStorage.setItem("signView", `${signView}`);
+    }
+  }
+  window.toggleSignView = toggleSignView;
+
+ 
 
   // Functionality CreateTokens view depending on selected token-type
   document.querySelector('#createTokens').addEventListener("click", async () => {
